@@ -2,16 +2,17 @@
 #define ENTITY_H
 
 #include "cs3113.h"
+#include "Map.h"
 
-enum Direction    { LEFT, UP, RIGHT, DOWN         }; // For walking
-enum EntityStatus { ACTIVE, INACTIVE              };
-enum EntityType   { PLAYER, BLOCK, PLATFORM, WIN, NONE };
-enum LandingState { NONE_LANDING, LANDED, CRASHED };
+enum Direction    { LEFT, UP, RIGHT, DOWN              }; // For walking
+enum EntityStatus { ACTIVE, INACTIVE                   };
+enum EntityType   { PLAYER, BLOCK, PLATFORM, NPC, NONE };
+enum AIType       { WANDERER, FOLLOWER, LERPER         };
+enum AIState      { WALKING, IDLE, FOLLOWING           };
 
 class Entity
 {
 private:
-    LandingState mLandingState = NONE_LANDING;
     Vector2 mPosition;
     Vector2 mMovement;
     Vector2 mVelocity;
@@ -19,11 +20,11 @@ private:
 
     Vector2 mScale;
     Vector2 mColliderDimensions;
-    
+
     Texture2D mTexture;
     TextureType mTextureType;
     Vector2 mSpriteSheetDimensions;
-    
+
     std::map<Direction, std::vector<int>> mAnimationAtlas;
     std::vector<int> mAnimationIndices;
     Direction mDirection;
@@ -46,10 +47,14 @@ private:
     EntityStatus mEntityStatus = ACTIVE;
     EntityType   mEntityType;
 
-    bool isColliding(Entity *other) const;
+    AIType  mAIType;
+    AIState mAIState;
+
+    float mLerpFactor = 2.0f;
+
     void checkCollisionY(Entity *collidableEntities, int collisionCheckCount);
     void checkCollisionX(Entity *collidableEntities, int collisionCheckCount);
-    void resetColliderFlags() 
+    void resetColliderFlags()
     {
         mIsCollidingTop    = false;
         mIsCollidingBottom = false;
@@ -58,25 +63,30 @@ private:
     }
 
     void animate(float deltaTime);
+    void AIActivate(Entity *target, float deltaTime);
+    void AIWander();
+    void AIFollow(Entity *target);
+    void AILerp(Entity *target, float deltaTime);
 
 public:
-    bool mThrusting = false; //for animation
     static constexpr int   DEFAULT_SIZE          = 250;
     static constexpr int   DEFAULT_SPEED         = 200;
     static constexpr int   DEFAULT_FRAME_SPEED   = 14;
     static constexpr float Y_COLLISION_THRESHOLD = 0.5f;
 
+    bool isColliding(Entity *other) const; //for utility
+
     Entity();
-    Entity(Vector2 position, Vector2 scale, const char *textureFilepath, 
+    Entity(Vector2 position, Vector2 scale, const char *textureFilepath,
         EntityType entityType);
-    Entity(Vector2 position, Vector2 scale, const char *textureFilepath, 
-        TextureType textureType, Vector2 spriteSheetDimensions, 
-        std::map<Direction, std::vector<int>> animationAtlas, 
+    Entity(Vector2 position, Vector2 scale, const char *textureFilepath,
+        TextureType textureType, Vector2 spriteSheetDimensions,
+        std::map<Direction, std::vector<int>> animationAtlas,
         EntityType entityType);
     ~Entity();
 
-    void update(float deltaTime, Entity *collidableEntities, int collisionCheckCount);
-    void update(float deltaTime, Entity* collidableEntities1, int collisionCheckCount1, Entity* collidableEntities2, int collisionCheckCount2);
+    void update(float deltaTime, Entity *player, Entity *collidableEntities,
+        int collisionCheckCount, Entity* blocks, int blockCount);
     void render();
     void normaliseMovement() { Normalise(&mMovement); }
 
@@ -91,11 +101,6 @@ public:
     void moveDown()  { mMovement.y =  1; mDirection = DOWN;  }
     void moveLeft()  { mMovement.x = -1; mDirection = LEFT;  }
     void moveRight() { mMovement.x =  1; mDirection = RIGHT; }
-
-    //to thrust
-    void setThrusting(bool value) { mThrusting = value; }
-    bool isThrusting() const { return mThrusting; }
-    void setFrame(int frame) { mCurrentFrameIndex = frame; }
 
     void resetMovement() { mMovement = { 0.0f, 0.0f }; }
 
@@ -114,11 +119,13 @@ public:
     bool        isJumping()                const { return mIsJumping;             }
     int         getSpeed()                 const { return mSpeed;                 }
     float       getAngle()                 const { return mAngle;                 }
-    
+    EntityType  getEntityType()            const { return mEntityType;            }
+    AIType      getAIType()                const { return mAIType;                }
+    AIState     getAIState()               const { return mAIState;               }
+
+
     bool isCollidingTop()    const { return mIsCollidingTop;    }
     bool isCollidingBottom() const { return mIsCollidingBottom; }
-
-    LandingState getLandingState() const { return mLandingState; }
 
     std::map<Direction, std::vector<int>> getAnimationAtlas() const { return mAnimationAtlas; }
 
@@ -132,9 +139,9 @@ public:
         { mScale = newScale;                       }
     void setTexture(const char *textureFilepath)
         { mTexture = LoadTexture(textureFilepath); }
-    void setColliderDimensions(Vector2 newDimensions) 
+    void setColliderDimensions(Vector2 newDimensions)
         { mColliderDimensions = newDimensions;     }
-    void setSpriteSheetDimensions(Vector2 newDimensions) 
+    void setSpriteSheetDimensions(Vector2 newDimensions)
         { mSpriteSheetDimensions = newDimensions;  }
     void setSpeed(int newSpeed)
         { mSpeed  = newSpeed;                      }
@@ -142,14 +149,33 @@ public:
         { mFrameSpeed = newSpeed;                  }
     void setJumpingPower(float newJumpingPower)
         { mJumpingPower = newJumpingPower;         }
-    void setAngle(float newAngle) 
+    void setAngle(float newAngle)
         { mAngle = newAngle;                       }
     void setEntityType(EntityType entityType)
         { mEntityType = entityType;                }
-    void setVelocity(Vector2 newVelocity)
+    void setDirection(Direction newDirection)
     {
-        mVelocity = newVelocity;
+        mDirection = newDirection;
+
+        if (mTextureType == ATLAS) mAnimationIndices = mAnimationAtlas.at(mDirection);
     }
+    void setAIState(AIState newState)
+        { mAIState = newState;                     }
+    void setAIType(AIType newType)
+        { mAIType = newType;                       }
+    void setLerpFactor(float factor)
+        { mLerpFactor = factor;                    }
+    float getLerpFactor() const
+        { return mLerpFactor;                      }
+
+    void checkCollisionY(Map *map);
+    void checkCollisionX(Map *map);
+
+    void update(float deltaTime, Entity *player, Map *map,
+        Entity *collidableEntities, int collisionCheckCount);
+    void update(float deltaTime, Entity *player, Map *map,
+        Entity *collidableEntities, int collisionCheckCount,
+        Entity *blocks, int blockCount);
 };
 
 #endif // ENTITY_H

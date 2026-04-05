@@ -100,25 +100,3 @@ Rectangle getUVRectangle(const Texture2D *texture, int index, int rows, int cols
         sliceHeight // height of slice
     };
 }
-
-/**
- * The function `panCamera` smoothly adjusts the camera's target position towards a specified target
- * position.
- * 
- * @param camera The `camera` parameter is a pointer to a `Camera2D` struct, which likely contains
- * information about a 2D camera such as its position, target, zoom level, and other properties.
- * @param targetPosition The `targetPosition` parameter is a pointer to a `Vector2` structure that
- * represents the desired position where the camera should be focused or centered on.
- */
-void panCamera(Camera2D *camera, const Vector2 *targetPosition)
-{
-    Vector2 positionDifference = Vector2Subtract(
-        *targetPosition, 
-        camera->target
-    );
-
-    camera->target = Vector2Add(
-        camera->target, 
-        Vector2Scale(positionDifference, 0.1f)
-    ); // 0.1 = smoothing factor
-}

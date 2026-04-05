@@ -1,275 +1,434 @@
-//I used the solutions for excercise 2 as a base to structure my code
 /**
-
-* Author: [Ryan Jin]
-
-* Assignment: Pong Clone
-
-* Date due: [02/14/2026]
-
+* Author: Ryan Jin
+* Assignment: Lunar Lander
+* Date due: 03/14/2026
 * I pledge that I have completed this assignment without
-
 * collaborating with anyone else, in conformance with the
-
 * NYU School of Engineering Policies and Procedures on
-
 * Academic Misconduct.
-
 **/
-#include "raylib.h"
-#include <math.h>
 
-// Enums
-enum AppStatus { TERMINATED, RUNNING };
+#include "CS3113/Entity.h"
+#include <vector>
+#include <ctime>
 
+// I borrowed some logic off my DVD player game
+// 
 // Global Constants
-constexpr int SCREEN_WIDTH = 800 * 1.5f,
-SCREEN_HEIGHT = 450 * 1.5f,
-FPS = 60;
+constexpr int SCREEN_WIDTH  = 1000,
+              SCREEN_HEIGHT = 600,
+              FPS           = 120;
 
-constexpr float FP_DAY = 1.0f, // cbange this to make faster or slower
-DP_YEAR = 365.0f,
-SUN_ROTATE = (2 * PI) / 25.0f, // roughly 25 days per rotation
-SUN_PULSE = (2 * PI) / 10.0f,
-SUN_PULSE_AMPLITUDE = 0.05f,
-EARTH_ORBIT = (2 * PI) / DP_YEAR,
-EARTH_ROTATE = 2 * PI,
-EARTH_ORBIT_RADIUS = 220.0f,
-MOON_ORBIT_RADIUS = 60.0f, //icons are too big for scale
-MOON_ORBIT_ROTATE = (2 * PI) / 27; // from tidal locking
+constexpr float FIXED_TIMESTEP          = 1.0f / 60.0f;
 
-constexpr char EARTH[] = "assets/earth.png";
-constexpr char MOON[] = "assets/moon.png";
-constexpr char SUN[] = "assets/sun.png";
+float PADDLE_SPEED = 400.0f;
+float BALL_SPEED = 350.0f;
+constexpr float PADDLE_WIDTH = 20.0f;
+constexpr float PADDLE_HEIGHT = 120.0f;
+constexpr float BALL_SIZE = 20.0f;
 
-constexpr char SPACE[] = "#0A1022"; // "space color"
+constexpr float AI_ERROR = 75.0f; //when both are AI, higher is less accurate, lower is more
+constexpr float AI_ERROR_DUO = 100.0f;
 
-constexpr Vector2 ORIGIN = {
-    SCREEN_WIDTH / 2,
-    SCREEN_HEIGHT / 2
-};
+constexpr float MAX_BOUNCE_ANGLE = 75.0f;
+
+constexpr Color BG_COLOR = BLACK;
+
+
 
 // Global Variables
-AppStatus gAppStatus = RUNNING;
+AppStatus gAppStatus   = RUNNING;
+float gPreviousTicks   = 0.0f,
+      gTimeAccumulator = 0.0f;
 
-float gAngle = 0.0f,
-gPulseTime = 0.0f;
+int gScore1 = 0;
+int gScore2 = 0;
+constexpr int WIN_SCORE = 3;
 
-// New Space variables
+bool gAI1 = true; //start by default
+bool gAI2 = false;
+bool PLAYING = true;
+// fix jitter by period
+float gAITimer1 = 0.0f;
+float gAITimer2 = 0.0f;
+float gAIUpdateInterval = 0.01f;
 
-float gDay = 0.0f;
+//increase speeds
 
-float gSunRotate = 0.0f;
-float gSunPulse = 0.0f;
+// Entities for pong
+Entity* gPaddle1 = nullptr;
+Entity* gPaddle2 = nullptr;
+Entity* gBall = nullptr;
 
-float gEarthOrbit = 0.0f;
-float gEarthRotate = 0.0f;
+//this will keep track of points at a period
+struct TrailPoint {
+    Vector2 position;
+    float timeCreated;
+};
 
-float gMoonOrbitRotate = 0.0f;
-
-Vector2 gSunPos = ORIGIN;
-Vector2 gEarthPos;
-Vector2 gMoonPos;
-
-Texture2D gSunTexture;
-Texture2D gEarthTexture;
-Texture2D gMoonTexture;
+std::vector<TrailPoint> gTrail;
+constexpr float TRAIL_DURATION = 30.0f;
 
 // Function Declarations
-Color ColorFromHex(const char* hex);
 void initialise();
 void processInput();
 void update();
 void render();
 void shutdown();
 
-#include <stdio.h>
-#include <stdlib.h>
-
-
-// You can ignore this function, it's just to get nice colours :)
-Color ColorFromHex(const char* hex)
-{
-    // Skip leading '#', if present
-    if (hex[0] == '#') hex++;
-
-    // Default alpha = 255 (opaque)
-    unsigned int r = 0,
-        g = 0,
-        b = 0,
-        a = 255;
-
-    // 6‑digit form: RRGGBB
-    if (sscanf(hex, "%02x%02x%02x", &r, &g, &b) == 3) {
-        return (Color) {
-            (unsigned char)r,
-                (unsigned char)g,
-                (unsigned char)b,
-                (unsigned char)a
-        };
-    }
-
-    // 8‑digit form: RRGGBBAA
-    if (sscanf(hex, "%02x%02x%02x%02x", &r, &g, &b, &a) == 4) {
-        return (Color) {
-            (unsigned char)r,
-                (unsigned char)g,
-                (unsigned char)b,
-                (unsigned char)a
-        };
-    }
-
-    // Fallback – return white so you notice something went wrong
-    return RAYWHITE;
-}
-
-
 void initialise()
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Earth Moon Sun Model");
-
-    gSunTexture = LoadTexture(SUN);
-    gMoonTexture = LoadTexture(MOON);
-    gEarthTexture = LoadTexture(EARTH);
-
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Physics");
     SetTargetFPS(FPS);
+    SetRandomSeed(time(NULL));
+
+    gPaddle1 = new Entity(
+        {
+                50.0f, SCREEN_HEIGHT / 2.0f   // position
+        },
+        { PADDLE_WIDTH, PADDLE_HEIGHT },     // scale
+        "assets/paddle.png",                  // texture file addresses
+        PLAYER
+    );
+    gPaddle2 = new Entity(
+        {
+                SCREEN_WIDTH - 50.0f, SCREEN_HEIGHT / 2.0f   // position
+        },
+    { PADDLE_WIDTH, PADDLE_HEIGHT },     // scale
+        "assets/paddle.png",                  // texture file addresses
+        PLAYER
+    );
+    gBall = new Entity(
+        {
+                SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f   // position
+        },
+    { BALL_SIZE, BALL_SIZE },     // scale
+        "assets/ball.png",                  // texture file addresses
+        BALL
+    );
+    gBall -> setVelocity({BALL_SPEED, BALL_SPEED});
 }
 
-void processInput()
-{
-    if (WindowShouldClose()) gAppStatus = TERMINATED;
+//serve ball after score
+void serveBall() {
+    Vector2 startPos = { SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
+    gBall->setPosition(startPos);
+    float direction = 1.0f;
+
+    if (gAI1 && !gAI2) {
+        direction = 1.0f; //player should receive because reaction time
+    }
+    else if (!gAI1 && gAI2) {
+        direction = -1.0f;
+    }
+    else {
+        if (GetRandomValue(0, 1) == 0) direction = -1.0f;
+        else direction = 1.0f;
+    }
+
+    float angle = GetRandomValue(-30, 30) * (PI / 180.0f);
+    Vector2 velocity;
+    velocity.x = direction * BALL_SPEED   * cos(angle);
+    velocity.y = BALL_SPEED   * sin(angle);
+
+    gBall->setVelocity(velocity);
 }
 
-void update()
+void processInput() 
 {
-    /*
-    gPulseTime += PULSE_INCREMENT;
-    gScaleFactor = BASE_SIZE + MAX_AMPLITUDE * sin(gPulseTime / PULSE_SPEED);
+    // reset velocity for paddles
+    gPaddle1->setVelocity({ 0, 0 });
+    gPaddle2->setVelocity({ 0, 0 });
 
-    gAngle += ORBIT_SPEED;
-    gPosition.x = ORIGIN.x + RADIUS * cos(gAngle);
-    gPosition.y = ORIGIN.y + RADIUS * sin(gAngle);
-    */
+    if (IsKeyDown(KEY_W)) gPaddle1->setVelocity({0, -PADDLE_SPEED});
+    else if (IsKeyDown(KEY_S)) gPaddle1->setVelocity({ 0, PADDLE_SPEED });
+    if (!gAI1){
+        if (IsKeyDown(KEY_UP)) gPaddle2->setVelocity({ 0, -PADDLE_SPEED });
+        else if (IsKeyDown(KEY_DOWN)) gPaddle2->setVelocity({ 0, PADDLE_SPEED });
+    }
+    if (IsKeyPressed(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
 
-    float deltaDay = 1.0f / FP_DAY; 
-    gDay += deltaDay;
+    if (IsKeyPressed(KEY_R)) {
+        if (!PLAYING){
+            gScore1 = 0;
+            gScore2 = 0;
+            PLAYING = true;
+            serveBall();
+        }
+    }
 
-    // sun
-    gSunRotate += SUN_ROTATE * deltaDay;
-    gSunPulse += SUN_PULSE * deltaDay;
+    if (IsKeyPressed(KEY_T)) {
+        gAI1 = !gAI1;
+    }
+    if (IsKeyPressed(KEY_Y)) {
+        gAI2 = !gAI2;
+    }
 
-    float sunScale = 1.0f + SUN_PULSE_AMPLITUDE * sin(gSunPulse);
+    if (IsKeyPressed(KEY_EQUAL)) { // why is it named like this
+        BALL_SPEED += 25.0f;
+        if (BALL_SPEED > 5000.0f)
+            BALL_SPEED = 5000.0f;
+        PADDLE_SPEED += 25.0f;
+        if (PADDLE_SPEED > 5000.0f)
+            PADDLE_SPEED = 5000.0f;
+    }
 
-    // earth
-    gEarthOrbit += EARTH_ORBIT * deltaDay;
-    gEarthRotate += EARTH_ROTATE * deltaDay;
+    if (IsKeyPressed(KEY_MINUS)) {
+        BALL_SPEED -= 25.0f;
+        if (BALL_SPEED < 100.0f)
+            BALL_SPEED = 100.0f;
+        PADDLE_SPEED -= 25.0f;
+        if (PADDLE_SPEED < 100.0f)
+            PADDLE_SPEED = 100.0f;
+    }
+}
 
-    gEarthPos.x = gSunPos.x + EARTH_ORBIT_RADIUS * cos(gEarthOrbit);
-    gEarthPos.y = gSunPos.y + EARTH_ORBIT_RADIUS * sin(gEarthOrbit);
+void update() 
+{
+    // Delta time
+    float ticks = (float) GetTime();
+    float deltaTime = ticks - gPreviousTicks;
+    gPreviousTicks  = ticks;
 
-    // moon
-    gMoonOrbitRotate += MOON_ORBIT_ROTATE * deltaDay;
+    // Fixed timestep
+    deltaTime += gTimeAccumulator;
 
-    gMoonPos.x = gEarthPos.x + MOON_ORBIT_RADIUS * cos(gMoonOrbitRotate);
-    gMoonPos.y = gEarthPos.y + MOON_ORBIT_RADIUS * sin(gMoonOrbitRotate);
+    if (deltaTime < FIXED_TIMESTEP)
+    {
+        gTimeAccumulator = deltaTime;
+        return;
+    }
 
+    while (deltaTime >= FIXED_TIMESTEP)
+    {
+        gAITimer1 += FIXED_TIMESTEP;
+        gAITimer2 += FIXED_TIMESTEP;
+        if (gAI1 && gAITimer1 >= gAIUpdateInterval) {
+            gAITimer1 = 0.0f;
+            Vector2 ballPos = gBall->getPosition();
+            Vector2 paddlePos = gPaddle2->getPosition();
+            float targetY = ballPos.y;
+            if (gAI1 && gAI2) targetY += GetRandomValue(-AI_ERROR_DUO, AI_ERROR_DUO);
+            else targetY += GetRandomValue(-AI_ERROR, AI_ERROR);
+            float range = 10.0f;
+            if (targetY > paddlePos.y + range) gPaddle2->setVelocity({0,PADDLE_SPEED});
+            else if (targetY < paddlePos.y - range) gPaddle2->setVelocity({ 0,-PADDLE_SPEED });
+            else gPaddle2->setVelocity({0,0});
+        }
+        if (gAI2 && gAITimer2 >= gAIUpdateInterval) {
+            gAITimer2 = 0.0f;
+            Vector2 ballPos = gBall->getPosition();
+            Vector2 paddlePos = gPaddle1->getPosition();
+            float targetY = ballPos.y;
+            if (gAI1 && gAI2) targetY += GetRandomValue(-AI_ERROR_DUO, AI_ERROR_DUO);
+            else targetY += GetRandomValue(-AI_ERROR, AI_ERROR);
+            float range = 10.0f;
+            if (targetY > paddlePos.y + range) gPaddle1->setVelocity({ 0,PADDLE_SPEED });
+            else if (targetY < paddlePos.y - range) gPaddle1->setVelocity({ 0,-PADDLE_SPEED });
+            else gPaddle1->setVelocity({ 0,0 });
+        }
+        gPaddle1->update(FIXED_TIMESTEP);
+        gPaddle2->update(FIXED_TIMESTEP);
+        gBall->update(FIXED_TIMESTEP);
+
+        float currentTime = GetTime();
+        gTrail.push_back({ gBall->getPosition(), currentTime});
+        float now = GetTime();
+
+        while (!gTrail.empty() && now - gTrail.front().timeCreated > TRAIL_DURATION) {
+            gTrail.erase(gTrail.begin());
+        }
+
+        Vector2 p2Pos = gPaddle2->getPosition();
+        if (p2Pos.y < PADDLE_HEIGHT / 2) {
+            gPaddle2->setPosition({ p2Pos.x, PADDLE_HEIGHT / 2 });
+        }
+        if (p2Pos.y > SCREEN_HEIGHT - PADDLE_HEIGHT / 2) {
+            gPaddle2->setPosition({ p2Pos.x, SCREEN_HEIGHT - PADDLE_HEIGHT / 2 });
+        }
+
+        Vector2 p1Pos = gPaddle1->getPosition();
+        if (p1Pos.y < PADDLE_HEIGHT / 2) {
+            gPaddle1->setPosition({ p1Pos.x, PADDLE_HEIGHT / 2 });
+        }
+        if (p1Pos.y > SCREEN_HEIGHT - PADDLE_HEIGHT / 2) {
+            gPaddle1->setPosition({ p1Pos.x, SCREEN_HEIGHT - PADDLE_HEIGHT / 2 });
+        }
+
+        Vector2 ballPos = gBall->getPosition();
+        Vector2 ballVel = gBall->getVelocity();
+
+        /*
+        if (ballPos.y <= BALL_SIZE / 2 || ballPos.y >= SCREEN_HEIGHT - BALL_SIZE / 2) {
+            ballVel.y *= -1; //flip velocty/bounce
+            gBall->setVelocity(ballVel);
+        }
+        */
+        if (ballPos.y <= BALL_SIZE / 2) {
+            ballPos.y = BALL_SIZE / 2;
+
+            //save direction so don't bounce backwards
+            float originalDir;
+            if (ballVel.x >= 0) originalDir = 1.0f;
+            else originalDir = -1.0f;
+
+            ballVel.y = fabs(ballVel.y);
+
+            ballVel.x += GetRandomValue(-80,80); //less deterministic
+            float speed = sqrt(ballVel.x * ballVel.x + ballVel.y * ballVel.y);
+            ballVel.x = (ballVel.x / speed) * BALL_SPEED;
+            ballVel.y = (ballVel.y / speed) * BALL_SPEED  ;
+
+            ballVel.x = fabs(ballVel.x) * originalDir;
+
+            gBall->setPosition(ballPos);
+            gBall->setVelocity(ballVel);
+        }
+        if (ballPos.y >= SCREEN_HEIGHT - BALL_SIZE / 2) {
+            ballPos.y = SCREEN_HEIGHT - BALL_SIZE / 2;
+
+            float originalDir;
+            if (ballVel.x >= 0) originalDir = 1.0f;
+            else originalDir = -1.0f;
+
+            ballVel.y = -fabs(ballVel.y);
+
+            ballVel.x += GetRandomValue(-80, 80); //less deterministic
+            float speed = sqrt(ballVel.x * ballVel.x + ballVel.y * ballVel.y);
+            ballVel.x = (ballVel.x / speed) * BALL_SPEED;
+            ballVel.y = (ballVel.y / speed) * BALL_SPEED;
+
+            ballVel.x = fabs(ballVel.x) * originalDir;
+
+            gBall->setPosition(ballPos);
+            gBall->setVelocity(ballVel);
+        }
+
+        if (gBall->isColliding(gPaddle1)) {
+            Vector2 ballPos = gBall->getPosition();
+            Vector2 paddlePos = gPaddle1->getPosition();
+            // i should do this in entity...
+            float intersectY = paddlePos.y - ballPos.y;
+            float normalized = intersectY / (PADDLE_HEIGHT / 2.0f);
+            if (normalized > 1.0f) normalized = 1.0f;
+            if (normalized < -1.0f) normalized = -1.0f;
+            float bounceAngle = normalized * MAX_BOUNCE_ANGLE * (PI / 180.0f);
+            ballVel.x = BALL_SPEED   * cos(bounceAngle);
+            ballVel.y = - BALL_SPEED   * sin(bounceAngle);
+            gBall->setVelocity(ballVel);
+
+
+            /*
+            ballVel.x = fabs(ballVel.x); //flip velocty/bounce
+            gBall->setVelocity(ballVel);
+            */
+        }
+
+        if (gBall->isColliding(gPaddle2)) {
+            Vector2 ballPos = gBall->getPosition();
+            Vector2 paddlePos = gPaddle2->getPosition();
+            float intersectY = paddlePos.y - ballPos.y;
+            float normalized = intersectY / (PADDLE_HEIGHT / 2.0f);
+            if (normalized > 1.0f) normalized = 1.0f;
+            if (normalized < -1.0f) normalized = -1.0f;
+            float bounceAngle = normalized * MAX_BOUNCE_ANGLE * (PI / 180.0f);
+            ballVel.x = -BALL_SPEED   * cos(bounceAngle);
+            ballVel.y = -BALL_SPEED   * sin(bounceAngle);
+            gBall->setVelocity(ballVel);
+
+            //ballVel.x = -fabs(ballVel.x); //flip velocty/bounce
+            //gBall->setVelocity(ballVel);
+        }
+
+        /*
+        if (ballPos.x < 0 || ballPos.x > SCREEN_WIDTH) {
+            gAppStatus = TERMINATED; //QUIT WHEN SCORE
+        }
+        */
+        if (ballPos.x < 0) {
+            gScore2++;
+            serveBall();
+        }
+        if (ballPos.x > SCREEN_WIDTH) {
+            gScore1++;
+            serveBall();
+        }
+        if (gScore1 >= WIN_SCORE || gScore2 >= WIN_SCORE) {
+            PLAYING = false;
+            //gAppStatus = TERMINATED;
+        }
+
+        deltaTime -= FIXED_TIMESTEP;
+    }
+    gTimeAccumulator = deltaTime;
 }
 
 void render()
 {
     BeginDrawing();
+    ClearBackground(BG_COLOR);
+    if (PLAYING){
+        gPaddle1->render();
+        gPaddle2->render();
 
-    float spacePulse = (sin(gSunPulse) + 1.0f) / 2.0f; //normalize to 0-1
-    float brightness = 0.85f + 0.15f * spacePulse;
+        float now = GetTime();
+        for (size_t i = 1; i < gTrail.size(); i++) {
+            float age = now - gTrail[i].timeCreated;
+            float alphaR = 1.0f - (age / TRAIL_DURATION);
+            if (alphaR<0.0f) alphaR = 0.0f;
+            Color trailColor = {255, 255, 255, (unsigned char)(alphaR * 255)};
 
-    Color base = ColorFromHex(SPACE);
+            DrawLineEx(
+                gTrail[i-1].position,
+                gTrail[i].position,
+                3.0f,
+                trailColor
+            );
+        }
 
-    Color space_color = {
-    (unsigned char)(base.r * brightness),
-    (unsigned char)(base.g * brightness),
-    (unsigned char)(base.b * brightness),
-    255
-    };
+        DrawText(TextFormat("%d", gScore1), SCREEN_WIDTH / 4, 30, 40, WHITE);
+        DrawText(TextFormat("%d", gScore2), SCREEN_WIDTH * 3 / 4, 30, 40, WHITE);
 
-    ClearBackground(space_color); //https://www.color-hex.com/color-palette/30647
+        DrawText("Press Y to Toggle P1", 20, SCREEN_HEIGHT-60, 20, WHITE);
+        Color aiColor1;
+        if (gAI2) aiColor1 = GREEN;
+        else aiColor1 = RED;
+        DrawText(TextFormat("AI: %s", gAI2 ? "ON" : "OFF"), 20, SCREEN_HEIGHT-35, 20, aiColor1);
 
-    //
+        //fix to fit better here
+        const char* toggleText = "Press T to Toggle P2";
+        DrawText(toggleText, SCREEN_WIDTH - MeasureText(toggleText,20) - 20, SCREEN_HEIGHT - 60, 20, WHITE);
+        Color aiColor2;
+        if (gAI1) aiColor2 = GREEN;
+        else aiColor2 = RED;
+        //fix to fit better here
+        const char* aiText2 = TextFormat("AI: %s", gAI1 ? "ON" : "OFF");
+        int aiWidth2 = MeasureText(aiText2, 20);
+        DrawText(aiText2, SCREEN_WIDTH - aiWidth2 - 20, SCREEN_HEIGHT - 35, 20, aiColor2);
 
-    float sunScale = 1.0f + 0.05f * sin(gSunPulse);
 
-    Rectangle sunSource = {
-        0,
-        0,
-        (float)gSunTexture.width,
-        (float)gSunTexture.height
-    };
+        gBall->render();
+    }
+    else {
+        int titleSize = 60;
+        const char* winner;
 
-    Rectangle earthSource = {
-        0,
-        0,
-        (float)gEarthTexture.width,
-        (float)gEarthTexture.height
-    };
+        if (gScore1 >= WIN_SCORE) winner = "PLAYER 1 WINS!";
+        else winner = "PLAYER 2 WINS";
 
-    Rectangle moonSource = {
-        0,
-        0,
-        (float)gMoonTexture.width,
-        (float)gMoonTexture.height
-    };
-
-    Rectangle sunDest = {
-        gSunPos.x,
-        gSunPos.y,
-        gSunTexture.width * sunScale * 0.4f,
-        gSunTexture.height * sunScale * 0.4f
-    };
-
-    Rectangle earthDest = {
-        gEarthPos.x,
-        gEarthPos.y,
-        gEarthTexture.width * 0.15f,
-        gEarthTexture.height * 0.15f
-    };
-
-    Rectangle moonDest = {
-        gMoonPos.x,
-        gMoonPos.y,
-        gMoonTexture.width * 0.08f,
-        gMoonTexture.height * 0.08f
-    };
-
-    Vector2 moonOrigin = {
-        moonDest.width / 2,
-        moonDest.height / 2
-    };
-
-    Vector2 sunOrigin = {
-        sunDest.width / 2,
-        sunDest.height / 2
-    };
-
-    Vector2 earthOrigin = {
-        earthDest.width / 2,
-        earthDest.height / 2
-    };
-
-    DrawTexturePro(gSunTexture, sunSource, sunDest, sunOrigin, gSunRotate * RAD2DEG, WHITE);
-
-    DrawTexturePro(gEarthTexture, earthSource, earthDest, earthOrigin, gEarthRotate * RAD2DEG, WHITE);
-
-    DrawTexturePro(gMoonTexture, moonSource, moonDest, moonOrigin, gMoonOrbitRotate * RAD2DEG, WHITE);
+        DrawText(winner, SCREEN_WIDTH/2 - MeasureText(winner, titleSize)/2, SCREEN_HEIGHT/2-60,titleSize, WHITE);
+        DrawText("Press R to Restart", SCREEN_WIDTH / 2 - 140, SCREEN_HEIGHT / 2 + 10, 30, WHITE);
+        DrawText("Press Q to Quit", SCREEN_WIDTH / 2 - 110, SCREEN_HEIGHT / 2 + 50, 20, GRAY);
+    }
 
     EndDrawing();
 }
 
-void shutdown()
-{
-    // small fix to unload
-    UnloadTexture(gSunTexture);
-    UnloadTexture(gEarthTexture);
-    UnloadTexture(gMoonTexture);
-
+void shutdown() 
+{ 
+    delete gPaddle1;
+    delete gPaddle2;
+    delete gBall;
     CloseWindow();
 }
 
