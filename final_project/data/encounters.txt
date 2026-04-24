@@ -1,0 +1,56 @@
+Water|6|sunken_yacht_cache|A partially sunken yacht holds a few crates and a locked cabin.
+Water|4|floating_debris_field|A wide field of trash and wreckage floats, some items look salvageable.
+River|5|overturned_motorboat|An overturned motorboat is half-submerged near the bank.
+Water|7|isolated_fishing_shack|A small shack on stilts stands alone in the middle of a lake.
+Water|3|murky_shallow_cove|A shallow, murky cove might hide dangers or resources.
+River|6|bridge_destroyed_partially|A section of a concrete bridge has collapsed into the river.
+Water|8|large_ferry_ship_grounded|A large ferry ship is beached on a sandbar, listing heavily.
+Industrial|7|abandoned_dock_cranes|Rusting cranes loom over an abandoned dock, cargo containers litter the area.
+River|5|submerged_vehicle_wreck|A partially submerged vehicle wreck, possibly containing loot or attracting water zombies.
+River|7|driftwood_raft_supplies|An abandoned, crude raft drifts near the bank, possibly carrying useful supplies.
+River|4|faint_splash_sound|A faint splashing sound is heard downstream, indicating movement in the water.
+River|6|dilapidated_boat_dock|A dilapidated boat dock, with a few small, possibly salvageable boats still tied.
+River|8|waterlogged_zombie_herd|Several slow-moving, waterlogged zombies are visible, partly submerged and aware of your presence.
+River|3|abandoned_fishing_spot|An abandoned fishing spot on the bank, with some gear left behind.
+River|5|rickety_crossing_point|A rickety, makeshift crossing point (logs, planks) spans a narrower part of the river.
+River|7|recent_campsite_remains|Remains of a small, recently abandoned campsite on the riverbank, fire still smoldering.
+River|6|partially_submerged_boat|A small boat is half-sunk by the bank, its contents unclear.
+River|4|mud_stuck_walkers|Several walkers are mired in thick mud near the river's edge, struggling to move.
+River|7|fresh_fish_on_bank|A few fresh fish lie gutted on a rock by the river, a crude knife beside them.
+River|5|abandoned_makeshift_raft|A rickety raft made of logs and barrels is beached, seemingly abandoned.
+River|6|current_debris_corpse|The river's current carries a mix of debris, including a waterlogged zombie corpse.
+Wilderness|5|overgrown_river_path|An overgrown path leads away from the river into a dense thicket of trees.
+Farmland|5|flooded_fields_flies|Low-lying farmland adjacent to the river is partially flooded, swarming with flies.
+Industrial|6|crumbling_riverside_dock|The splintered remains of a small, forgotten industrial dock jut into the river.
+Urban|6|collapsed_fire_escape|A rusty fire escape has partially collapsed onto the alleyway below.
+Urban|7|looting_gang_sightings|Graffiti marks indicate a dangerous scavenging gang operates nearby.
+Urban|5|abandoned_food_truck|An abandoned food truck stands, its side door slightly ajar.
+Urban|8|siren_looping_broadcast|A broken PA system endlessly repeats an emergency siren and garbled message.
+Urban|4|overturned_police_cruiser|A police cruiser is overturned, its lights still faintly blinking.
+Urban|6|barricaded_apartment_entry|The main entrance to an apartment building is heavily barricaded from the inside.
+Urban|7|alley_ambush_point|A narrow, shadowed alley looks like a perfect place for an ambush by scavengers or a small horde.
+Urban|5|fallen_lamppost_blockade|A fallen lamppost blocks a narrow street, sparking intermittently.
+Urban|6|crashed_police_car|A police car lies overturned, its emergency lights still flashing faintly.
+Urban|7|boarded_grocery_store|A grocery store's entrance is heavily boarded up, with fresh graffiti covering its windows.
+Urban|5|apartment_window_light|A faint, flickering light can be seen in an upper-story window of an apartment building.
+Road|4|abandoned_bus_stop|An abandoned bus stop shelter holds scattered luggage and a child's stroller.
+Industrial|8|open_warehouse_door|A large warehouse door hangs ajar, and muffled sounds seem to emanate from inside.
+Urban|3|overturned_vendor_cart|An overturned street vendor cart has spilled fresh, but slightly bruised, produce onto the pavement.
+Urban|6|empty_pet_store|A pet store stands with its front door ajar, cages empty and signs of a struggle.
+Landmark|2|neglected_park_fountain|A small park fountain continues to run, but its basin is choked with debris and murky water.
+Urban|7|collapsed_apartment_building|A multi-story apartment building has partially collapsed, creating a debris field.
+Urban|5|street_performer_statue|A lone, eerily still street performer statue stands amidst the decay.
+Urban|6|rooftop_garden_raid|A small rooftop garden shows signs of a recent, desperate raid for supplies.
+Urban|8|armored_van_wreckage|The twisted remains of an armored van lie overturned on the street.
+Urban|4|abandoned_bookstore|An open bookstore displays its wares to an empty, silent audience.
+Urban|7|graffiti_message_alert|Fresh graffiti on a wall warns of a "clear zone" ahead.
+Urban|5|school_bus_barricade|A school bus has been used to block off a street intersection.
+Urban|6|overturned_food_truck|An overturned food truck spills its contents onto the pavement.
+Urban|7|abandoned_supermarket_aisle|A supermarket aisle is eerily silent, shelves mostly picked clean.
+Urban|5|overturned_bus_interior|An overturned school bus lies on its side, its interior a mess of seats and debris.
+Urban|6|rooftop_sniper_nest|A makeshift sniper nest is visible on a nearby building rooftop.
+Urban|8|medical_supply_truck_wreckage|A damaged medical supply truck is crashed near an intersection.
+Urban|4|group_of_looters|A small group of desperate survivors is scavenging a storefront.
+Urban|3|alleyway_ambush_trap|An alleyway appears to be booby-trapped.
+Urban|5|crashed_police_cruiser|A crashed police cruiser is blocking the road, siren still faintly wailing.
+Urban|9|military_supply_cache_rumor|Whispers of a hidden military supply cache in a nearby building are heard.

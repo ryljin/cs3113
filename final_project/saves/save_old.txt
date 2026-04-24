@@ -1,0 +1,36 @@
+day 6
+hour 14
+minute 0
+lastAIGenerationDay 3
+healthStat 52
+foodStat 100
+energyStat 66
+distanceTravelled 66
+worldGridX 613
+worldGridY 393
+localKmX 3
+localKmY 3
+travelDirection 1
+currentBiome 7
+aiEnabled 0
+startCity 1
+startLatitude 41.8781
+startLongitude -87.6298
+latitude 41.7297
+longitude -87.9641
+currentLocation Wilderness
+travelLog You turn east, following what remains of the road into the quiet distance.
+travelDebugLog 
+armorName Dickies_Work_Pants
+armorProtection 3
+armorMobility 3
+flashlightName Flashlight
+flashlightRadius 45
+flashlightRange 4
+firearmName Colt_M1911A1
+firearmDamage 6
+firearmSpeed 3
+meleeName Estwing_Geological_Pick
+meleeDamage 4
+meleeSpeed 3
+ammo 84

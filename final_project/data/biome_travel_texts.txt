@@ -1,0 +1,358 @@
+3|You move through dense urban blocks, passing dark storefronts, dead signals, and streets packed with abandoned cars.
+3|You take another route through the city, keeping close to walls and broken glass as the intersections open ahead.
+4|You cross quiet suburbs where lawns have gone wild and houses sit with their doors half-open.
+4|You move through a suburban stretch of cul-de-sacs, stalled cars, and empty windows.
+5|You pass through industrial ground, between warehouses, fenced yards, loading docks, and rusting equipment.
+5|You follow the edge of an industrial district where the road smells of oil, rainwater, and old smoke.
+6|You travel past farmland, long fields, collapsed barns, and fence lines bending into the grass.
+6|You move along the edge of open fields, watching crows lift from the ruined crops ahead.
+7|You cut through wilderness, where the road narrows and the trees crowd close on both sides.
+7|You move through thick wilderness, listening to branches scrape and shift beyond the trail.
+8|You follow a road corridor, cracked but still clear enough to make steady progress.
+8|You stay on the road, passing mile markers and vehicles left behind in a hurry.
+9|You approach a strange landmark, something marked by old barricades and signs no one has touched in years.
+9|You pass through a place that feels marked, as if people once gathered here before everything went quiet.
+2|You follow a river crossing, watching the water move darkly beneath ruined bridgework.3|Skeletal buses litter the avenue, their windows shattered, doors agape.
+3|A flickering neon sign from a closed diner casts an eerie glow on the wet asphalt.
+3|The stench of decay hangs heavy in the air, mingling with the scent of stagnant rain.
+3|Discarded newspapers blow across a deserted plaza, headlines shouting forgotten crises.
+3|You duck into an alleyway, the graffiti-covered walls offering scant protection.
+3|Sirens wail distantly, a chilling reminder of a world that no longer exists.
+3|A traffic light cycles uselessly through red, yellow, and green over an empty intersection.
+3|You navigate through overturned trash cans and debris, the city a graveyard of hurried departures.
+3|A crumpled map lies near a shattered phone booth, its screen dark.
+3|You pass by the shells of office buildings, their glass facades reflecting the gray sky.
+3|A stalled delivery truck blocks the road, its cargo spilling out onto the pavement.
+4|Rows of identical houses stand silent, curtains drawn, lawns overgrown with weeds.
+4|A child's tricycle lies on its side in a driveway, a poignant symbol of abandonment.
+4|You hear a distant bang from within one of the suburban homes.
+4|A mailbox stands open, overflowing with junk mail that will never be read.
+4|The chain-link fences around yards are bent and broken in places.
+4|You creep past a foreclosed house, a red tag on the door a grim warning.
+4|A broken sprinkler system sprays a faint mist onto a dead patch of grass.
+4|You spot a rusted swing set in a backyard, creaking faintly in the breeze.
+4|A minivan sits in a driveway, its windows fogged over from the inside.
+4|You find a discarded smartphone near a curb, its screen cracked.
+5|Warehouses loom on either side, their loading bay doors shut tight.
+5|The air here is thick with the metallic tang of rust and old oil.
+5|Chain-link fences topped with barbed wire surround empty lots.
+5|A half-finished construction site stands silent, rebar exposed to the elements.
+5|You pass a defunct gas station, its pumps empty and forlorn.
+5|A large box truck is parked haphazardly, its rear doors slightly ajar.
+5|The asphalt is cracked and uneven, weeds pushing through the gaps.
+5|You hear the distant hum of a malfunctioning power substation.
+5|Graffiti covers the walls of a concrete structure, once a part of some larger complex.
+5|A pile of discarded pallets lies near a loading dock.
+5|The wind whistles through broken panes of glass in a factory window.
+6|Miles of corn stalks, yellowed and brittle, stretch out before you.
+6|A derelict barn sags under its own weight, timbers rotted through.
+6|Fence posts lean precariously, sections of barbed wire dangling.
+6|You spot a lone scarecrow in a field, its straw stuffing starting to spill out.
+6|A rusted tractor sits abandoned in the middle of a muddy field.
+6|You hear the cawing of crows from a distant copse of trees.
+6|A muddy track leads off towards a farmhouse with boarded-up windows.
+6|The air smells of dry earth and decaying vegetation.
+6|You see a silo, its metal sides streaked with rust.
+6|A dirt road winds through fields of withered crops.
+6|A small, overgrown orchard is visible off in the distance.
+7|The path is narrow, overgrown with thorny bushes and fallen branches.
+7|Sunlight struggles to penetrate the dense canopy of leaves above.
+7|You hear the rustling of unseen creatures in the undergrowth.
+7|A fallen log blocks the trail, forcing you to climb over.
+7|The ground is uneven, covered in roots and loose stones.
+7|You catch the scent of damp earth and pine needles.
+7|A small stream trickles nearby, its water dark and clear.
+7|You emerge from a thicket of trees into a small, sun-dappled clearing.
+7|The silence here is profound, broken only by the sounds of nature.
+7|You follow a faint game trail deeper into the woods.
+7|A deer carcass lies half-eaten near the path.
+8|The highway stretches out, a ribbon of cracked concrete littered with debris.
+8|Abandoned cars are parked haphazardly on the shoulder, some still smoking.
+8|You pass a highway sign, its message obscured by rust and grime.
+8|The hum of your footsteps is loud in the oppressive silence.
+8|You find a crumpled atlas by the side of the road.
+8|Mile markers blur past as you make steady progress.
+8|A discarded tire lies in the middle of your path.
+8|You spot the skeletal remains of an overturned truck.
+8|The painted lines on the road are faded and chipped.
+8|You navigate around a washed-out section of pavement.
+8|The sun glints off shattered glass scattered across the asphalt.
+9|A dilapidated roadside motel stands eerily silent, its neon sign dark.
+9|You pass a faded billboard advertising a long-closed tourist attraction.
+9|A small, forgotten memorial is marked by wilting flowers and faded ribbons.
+9|The remains of a roadblock, made of concrete barriers and twisted metal, litter the area.
+9|You see an abandoned gas station with a faded sign for a once-popular brand.
+9|A deserted playground sits eerily quiet, swings swaying gently.
+9|You find a solitary payphone booth, disconnected and forlorn.
+9|The structure of a long-closed drive-in movie theater looms ahead.
+9|A water tower, its paint peeling, stands as a lonely sentinel.
+9|You discover the entrance to a closed-down park, chained shut.
+9|A single, weather-beaten bench sits overlooking a now-empty vista.
+3|The shattered glass underfoot crunches loudly with every step as you pass a darkened mall entrance.
+3|You weave through piles of garbage and overturned vehicles, the stench of decay thick in the air.
+3|The towering office buildings cast long shadows, their windows reflecting the empty sky.
+3|A flickering neon sign from a boarded-up bar buzzes erratically, the only sign of lingering power.
+3|You duck into an alleyway to avoid an open intersection, the walls covered in peeling posters.
+3|The distant wail of a siren, quickly silenced, sends a shiver down your spine.
+3|A forgotten protest sign, still tied to a lamppost, flaps in the breeze.
+3|You spot a half-eaten meal on a diner table through a grimy window.
+3|The street is littered with abandoned briefcases and scattered papers from a hasty evacuation.
+3|You navigate past a stalled city bus, its doors hanging open like a gaping mouth.
+3|The graffiti on the underpass wall is fresh, scrawled in what looks like dried blood.
+3|You see a broken police car, its siren still faintly flashing red and blue.
+3|The roar of wind through broken windows of a high-rise sounds like ghostly whispers.
+3|You pick your way through a street fair's remnants, overturned stalls and scattered merchandise.
+3|A discarded newspaper flutters in the gutter, dated from last fall.
+3|The sounds of distant scrabbling make you quicken your pace towards the next block.
+4|You move through rows of identical houses, their lawns overgrown and mailboxes overflowing.
+4|A child's bicycle lies on its side in a driveway, its wheels still gently spinning.
+4|The porch lights on some houses are still on, casting eerie pools of yellow light.
+4|You pass a minvan with its doors wide open, groceries spilled onto the asphalt.
+4|A lawnmower sits abandoned mid-chore in one yard, the grass growing tall around it.
+4|You see a sprinkler still running on a patch of dead grass, a slow, rhythmic hiss.
+4|The cul-de-sacs offer little cover, just more of the same quiet, dead houses.
+4|A forgotten set of car keys dangles from the lock of a sports car.
+4|You skirt a group of abandoned shopping carts near the entrance to a gated community.
+4|A faded welcome mat reads "Home Sweet Home" outside a house with boarded windows.
+4|The wind chimes on a front porch tinkle a lonely, melancholic tune.
+4|You notice a family portrait left on a windowsill, facing outwards.
+4|The manicured hedges have begun to reclaim the sidewalks.
+4|A bright red fire hydrant is tipped over, water seeping into the cracked pavement.
+4|You spot a satellite dish tilted precariously on the roof of a ranch-style house.
+4|The neighborhood pool is filled with stagnant, green water and fallen leaves.
+5|The loading docks are silent, the massive bay doors rusted shut.
+5|You pass a fenced-in area with stacks of unused construction materials.
+5|The air here smells of metal, oil, and something acrid, like burnt chemicals.
+5|You walk alongside a long chain-link fence, topped with barbed wire.
+5|A large, empty box truck sits parked by a warehouse entrance, its back doors ajar.
+5|The corrugated metal walls of the buildings echo with every sound.
+5|You duck behind a stack of discarded tires, watching for movement.
+5|A broken overhead crane stands frozen in time above an empty factory floor.
+5|The security cameras on the corners of the buildings are all dark.
+5|You find a discarded hard hat near a pile of rebar.
+5|The paint is peeling from the massive signage of a defunct distribution center.
+5|A forklift sits idle, its forks pointing skyward.
+5|You navigate through a maze of industrial piping, some of it leaking a dark, viscous fluid.
+5|A stray dog's howl echoes from deep within the industrial complex.
+5|The electric fences along the perimeter are sparking intermittently.
+5|You see a foreman's pickup truck, keys still in the ignition, parked outside a foreman's office.
+6|The rows of corn stalks are dry and brittle, rustling in the wind.
+6|You follow a muddy track between fields, passing dilapidated farm equipment.
+6|A scarecrow slumps over in its post, its stuffing spilling out.
+6|The farmhouse windows are dark and empty, curtains tattered.
+6|You cross a rickety wooden bridge over a dry creek bed.
+6|The scent of damp earth and decaying vegetation fills the air.
+6|You pass an abandoned tractor, its engine block exposed.
+6|A flock of birds suddenly takes flight from a distant tree line.
+6|The fence posts are leaning precariously, some having fallen entirely.
+6|You see a weathered barn with a gaping hole in its roof.
+6|The silos stand like silent sentinels against the pale sky.
+6|A discarded almanac lies open on a porch swing.
+6|You move past a field of sunflowers, their heads bowed and withered.
+6|The faint smell of manure lingers in the air.
+6|You find a rusted watering can near a dry well.
+6|A single, tattered American flag hangs limply from a pole outside a farmstead.
+7|The path narrows, branches scraping at your clothes and backpack.
+7|You push through dense undergrowth, the forest floor thick with fallen leaves.
+7|The sunlight struggles to break through the thick canopy of trees.
+7|You hear the snap of a twig in the distance, and your breath catches.
+7|A deer track crosses the faint trail, leading deeper into the woods.
+7|You follow a barely visible game trail, hoping it leads somewhere useful.
+7|The air is cool and smells of pine needles and damp earth.
+7|You spot a discarded camping tent, its fabric ripped and faded.
+7|The silence of the wilderness is punctuated by the calls of unseen birds.
+7|You navigate around a fallen tree blocking the path.
+7|A stream babbles somewhere nearby, a welcome sound.
+7|You find a weathered wooden signpost, its lettering long gone.
+7|The shadows lengthen as the sun begins to dip below the horizon.
+7|You stumble upon a small clearing, the remnants of an old campfire visible.
+7|The wind rustles the leaves, creating a whispering sound.
+7|You notice a strange marking carved into the bark of an old oak tree.
+8|The asphalt is cracked and buckled in places, with weeds growing through.
+8|You pass mile markers, their numbers faded but still readable.
+8|The skeletal remains of a car sit abandoned on the shoulder.
+8|You keep to the center of the road, scanning the sides for threats.
+8|A faded highway patrol car is half-overturned in a ditch.
+8|The yellow lines are worn but still visible, guiding your way.
+8|You see the glint of broken glass scattered across the pavement.
+8|A discarded GPS unit lies by the roadside, its screen dark.
+8|The rumble of your footsteps seems unnaturally loud on the empty highway.
+8|You pass a rest stop, its picnic tables overturned.
+8|The emergency call boxes are all smashed and useless.
+8|A sign for a long-closed diner hangs precariously from one bolt.
+8|You spot a moving truck, its cargo doors still latched.
+8|The overpasses loom above, casting ominous shadows.
+8|The constant drone of the wind is the only sound for miles.
+8|You find a flattened tire next to a jack and a lug wrench.
+9|You approach a large, derelict shopping mall, its parking lot empty.
+9|A weathered billboard advertises a product no longer sold, its colors faded.
+9|The entrance to the old movie theater is boarded up, posters peeling.
+9|You pass a deserted gas station, pumps standing like monuments.
+9|The entrance to a stadium is blocked by a makeshift barricade of old furniture.
+9|You see a statue in a park, now covered in moss and bird droppings.
+9|The sign for a national park visitor center is hanging askew.
+9|You skirt the perimeter of an abandoned amusement park, the Ferris wheel silent.
+9|A historic marker plaque is chipped and unreadable.
+9|You pass the shell of a once-grand hotel, its windows dark voids.
+9|The iconic sign of a fast-food chain is bent and rusted.
+9|You see the remnants of a roadside attraction, a giant concrete dinosaur crumbling.
+9|A public library, its doors hanging open, stands silently on the corner.
+9|You approach a decommissioned power substation, its fences sagging.
+9|A small, quaint chapel stands isolated, its steeple intact.
+9|You find the entrance to a county fairgrounds, the gates rusted shut.
+3|The skyscrapers loom like silent giants. Dust motes dance in the weak light filtering through broken windows.
+3|Streets are choked with overturned vehicles and scattered debris. A chilling wind whistles through shattered glass.
+3|You navigate a maze of alleyways, the stench of decay thick in the air. Graffiti covers every surface.
+3|A siren wails faintly in the distance, a phantom sound in this dead city. The silence is oppressive.
+3|You pass a darkened electronics store, screens showing only static. An old smartphone lies cracked on the pavement.
+3|The remnants of a barricade block the street ahead. You can hear rustling from the shadows.
+3|You see a collapsed bus, its doors ripped open. The air around it feels colder.
+3|A neon sign flickers erratically on a derelict motel, casting an eerie glow on the empty parking lot.
+3|You move through a downtown core, abandoned office buildings casting long shadows.
+3|A flock of birds suddenly takes flight from a rooftop, their wings beating a frantic rhythm.
+3|You spot a police cruiser, its lights long dead, blocking an intersection.
+3|The echo of your footsteps is the only sound in this concrete canyon.
+4|Rows of identical houses stand empty, curtains drawn. Some lawns are overgrown.
+4|You move through quiet suburbs, the only movement the sway of dead branches.
+4|A child's bicycle lies on its side in a driveway, wheels slowly spinning in the breeze.
+4|You pass a foreclosed home, a red "FOR SALE" sign faded and peeling in the yard.
+4|Streetlights hang askew, some still weakly illuminating empty sidewalks.
+4|You see a delivery truck, its side door ajar, revealing stacks of boxes.
+4|A child's toy is left forgotten on a porch swing, gently rocking.
+4|The manicured lawns have turned to weeds. A single car sits abandoned in a driveway.
+4|You pass a playground, swings creaking mournfully in the wind.
+4|A dog barks somewhere nearby, a desperate, lonely sound.
+4|You see a satellite dish tilted towards the sky, receiving no signal.
+4|A broken garden gnome lies face down in a flowerbed.
+5|Warehouses stand like silent tombs, their windows dark and vacant.
+5|You move between towering metal structures and fenced-off yards. The air smells of rust and oil.
+5|A loading dock is piled high with decaying pallets. A forklift sits frozen in time.
+5|You pass an abandoned construction site, unfinished buildings reaching towards the sky.
+5|A yellow caution tape flutters from a damaged chain-link fence.
+5|You see a box truck with its rear doors open, empty cargo space exposed.
+5|A sign for a manufacturing plant is bent and rusted, the company name barely legible.
+5|You move past a power substation, its humming silence unsettling.
+5|The ground is littered with discarded tools and industrial debris.
+5|A large, industrial fan is motionless outside a factory entrance.
+5|You hear the drip of water from a leaky pipe somewhere nearby.
+5|A faded company logo adorns a rusting metal door.
+6|Vast fields stretch out, crops long gone to seed or rotted on the stalk.
+6|You travel past broken fences and dilapidated barns. Crows circle overhead.
+6|The scent of damp earth and decaying vegetation fills the air.
+6|You move along a dusty road, the only sound the crunch of gravel underfoot.
+6|A tractor sits abandoned in the middle of a field, its engine cold.
+6|You see a farmhouse with boarded-up windows, smoke no longer rising from the chimney.
+6|The wind rustles through dry stalks, a lonely whisper.
+6|A scarecrow slumps in its post, tattered clothes flapping.
+6|You pass a small, overgrown orchard, fallen apples rotting on the ground.
+6|A pond reflects the dull sky, its surface disturbed only by a lone dragonfly.
+6|You notice the remnants of a greenhouse, glass shattered and frames askew.
+6|A weathered mailbox stands at the end of a long, unpaved driveway.
+7|The trees press in, branches scraping against your gear. Sunlight struggles to break through.
+7|You move through thick woods, the path barely discernible. Twigs snap underfoot.
+7|The air is damp and smells of pine needles and decaying leaves.
+7|You hear the distant hoot of an owl, a mournful sound in the twilight.
+7|A fallen tree blocks the narrow trail, forcing you to find a way around.
+7|You catch a glimpse of movement in the undergrowth, then nothing.
+7|The silence of the wilderness is broken only by the chirping of unseen insects.
+7|You pass a small, moss-covered rock formation, looking ancient.
+7|Sunlight filters through the canopy, creating dappled patterns on the forest floor.
+7|You notice animal tracks in the soft earth, but they look old.
+7|The rustling of leaves could be the wind, or something else.
+7|A wild berry bush hangs heavy with fruit, untouched.
+8|The highway is a ribbon of cracked asphalt, littered with abandoned vehicles.
+8|You follow a road, passing faded billboards and mile markers.
+8|The rumble of your movement echoes in the vast emptiness of the highway.
+8|You navigate around stalled cars and debris, the centerline long gone.
+8|A gas station sign leans precariously, its pumps empty.
+8|You see the shattered remnants of a rest stop ahead.
+8|The monotonous hum of the wind is the only sound for miles.
+8|You pass a school bus, its windows smashed, sitting abandoned on the shoulder.
+8|GPS signals are unreliable out here. You rely on your map and compass.
+8|The asphalt is broken in places, weeds pushing through the cracks.
+8|You see the skeletal remains of a bridge in the distance.
+8|A truck stop is eerily silent, its parking lot filled with derelict rigs.
+9|A faded sign points to "Americana Park," now just a collection of overgrown picnic tables.
+9|You pass a monument, its inscription barely visible beneath layers of grime.
+9|This place feels significant, a gathering spot now eerily deserted.
+9|A historical marker stands stoically, its story untold.
+9|You see the crumbling remains of a once-grand roadside attraction.
+9|A large, empty amphitheater sits silent, waiting for a crowd that will never come.
+9|You pass a closed-down tourist trap, its kitschy decorations faded and broken.
+9|A sign for a scenic overlook is obscured by vines.
+9|You find a deserted visitor center, its exhibits covered in dust.
+9|This was once a place of celebration, now a tomb.
+9|You see a peculiar statue, its meaning lost to time.
+9|A weathered wooden sign promises a "Welcome to…" that is no longer true.
+2|You follow a river bank, the water dark and slow, trees leaning over the edge.
+2|The air by the river is cool and damp, a faint smell of decay from fallen leaves.
+2|You find a collapsed bridge, twisted rebar jutting from the murky water below.
+2|The river winds through dense trees, its current strong, carrying debris downstream.
+2|You walk along an old river path, cracked pavement giving way to tangled roots.
+2|The water flows silently, reflecting the overcast sky and the empty shorelines.
+2|You cross a narrow, sturdy-looking bridge, the metal groaning softly in the breeze.
+2|The river's edge is muddy, footprints long since washed away by passing floods.
+2|An abandoned fishing boat, half-sunk, bobs gently near the overgrown bank.
+3|Streets are choked with abandoned taxis and dark bus stops from the old days.
+3|Glass towers stand silent, reflecting the grey sky above empty sidewalks below.
+3|You move past a boarded-up electronics store, its display windows smashed open.
+3|Broken ATMs spill cash into the gutters of a desolate financial district.
+3|The scent of decay hangs heavy near a collapsed parking garage, cars dangling.
+3|You navigate around a police barricade, rusted Humvees blocking off a main avenue.
+3|Empty cafes with overturned chairs and menus scattered on the floor line the street.
+3|A faded billboard advertises a new smartphone from years ago, now peeling in the sun.
+3|Passing a skyscraper, you see dead potted plants in the silent, empty lobby.
+4|Foreclosed homes with overgrown lawns and 'for sale' signs rotting on the ground.
+4|You pass a deserted strip mall, windows of a tanning salon and discount store smashed.
+4|Kids' toys lie scattered in driveways, bikes overturned beside empty garages.
+4|The air in this dead subdivision smells of stale water and unraked leaves.
+4|You move through a cul-de-sac, past an empty playground with a broken swing set.
+4|Old minivans and sedans sit rusted in driveways, grass growing through their tires.
+4|A forgotten newspaper from late 2012 sits on a porch, its headlines faded by the sun.
+4|You glimpse into homes with open doors, seeing overturned furniture and dust motes.
+4|The faint scent of gasoline lingers near an abandoned gas station with rusted pumps.
+5|Rusted box trucks sit abandoned near a silent loading dock, their tires flat.
+5|The smell of stale oil and damp concrete fills the air between derelict factories.
+5|Chain-link fences topped with razor wire sag around empty storage facilities.
+5|You pass a power substation, its transformers silent, no hum in the still air.
+5|Derelict machinery, half-covered in tarps, sits rusting in a gravel lot.
+5|Stacks of pallets lean precariously, covered in years of grime and bird droppings.
+5|An old construction site, cranes frozen mid-air, tools scattered on the dirt.
+5|The echo of your steps rings in an empty warehouse, its high windows caked with dust.
+5|You follow the edge of an industrial park, its office buildings dark and vacant.
+6|Empty silos stand like sentinels over fields choked with weeds, not crops.
+6|Broken fences line overgrown fields, the dirt roads rough and untended.
+6|You spot a rusted tractor, its engine hood ajar, sitting in a fallow field.
+6|A collapsed barn leans precariously, wood rotting, hay bales spilled out.
+6|The wind whispers through dead corn stalks, a dry, rustling sound.
+6|Abandoned farmhouses with broken windows watch over fields now wild.
+6|Animal pens sit empty, gates swinging on rusted hinges in the breeze.
+6|You pass an irrigation ditch, its water stagnant, lined with dry weeds.
+6|Long rows of withered vines show where a vineyard once thrived, now choked.
+7|The path narrows into thick woods, sunlight barely piercing the canopy.
+7|The air is damp and cool here, smelling of wet earth and decaying leaves.
+7|Thorns snag your clothes as you push through undergrowth, trees pressing close.
+7|You hear the rustle of unseen creatures in the dense foliage, then silence.
+7|Fallen logs create obstacles, covered in moss and slow-growing fungi.
+7|The wilderness feels ancient, the trees towering, their branches intertwined.
+7|You follow a deer trail, hoping it leads somewhere passable, through dense brush.
+7|Sound is muffled here, only the distant drone of insects and the creak of branches.
+7|A long-abandoned campsite, fire pit cold, old gear scattered and rotting.
+8|The highway stretches ahead, littered with abandoned cars and the occasional stalled semi.
+8|Overgrown weeds push through cracks in the asphalt, reclaiming the shoulder.
+8|You pass a rusted highway sign, pointing to a city that's long since fallen silent.
+8|An old GPS unit lies shattered on the pavement, its screen dark and useless now.
+8|The road is mostly clear, but the silence is broken only by the wind and your footsteps.
+8|You travel past overturned SUVs, their doors agape, belongings scattered nearby.
+8|Mile markers tick by, each one a small victory in the long, quiet journey.
+8|The scent of old exhaust and rain-soaked asphalt lingers on this deserted stretch.
+8|A broken payphone booth stands at a crossroads, its receiver dangling uselessly.
+9|You approach a sports stadium, its immense structure silent, banners shredded by wind.
+9|A crumbling monument stands alone in a field, its plaques unreadable with age.
+9|The remains of an amusement park, Ferris wheel rusted, roller coaster tracks twisting.
+9|You skirt the edge of an abandoned military base, fences breached, watchtowers empty.
+9|An old shopping mall, its massive glass entrance smashed, reflecting nothing but sky.
+9|A forgotten church with stained-glass windows still intact, casting colored light.
+9|You pass a university campus, dorms empty, lecture halls filled with fallen debris.
+9|The ruins of a once-busy airport, planes rusting on the tarmac, control tower dark.
+9|An old drive-in theater screen stands like a ghost, fading movie images barely visible.
